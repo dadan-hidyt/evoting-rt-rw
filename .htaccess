@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+####################################
+RewriteRule ^login/?$ index.php?app=auth&auth_type=login [QSA]
+RewriteRule ^request/ajax$ request/ajax.php [QSA]

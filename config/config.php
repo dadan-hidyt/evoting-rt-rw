@@ -5,9 +5,9 @@ $config = array();
 $config['host']     = "localhost";
 $config['user']     = "root";
 $config['pass']     = "";
-$config['dbname']   = "db_pemilu_rt_rw";
+$config['db_name']  = "db_pemilihan_rt_rw";
 #configurasi website
 $config['title']    = "Pemilu";
-$config['url']      = "site_url";
+$config['url']      = "http://".$_SERVER["HTTP_HOST"]."/dadan_app/proyek/E-Voting-rt-rw/";
 //END code
 ?>

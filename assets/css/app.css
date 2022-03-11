@@ -1,0 +1,95 @@
+/* css reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	font-family: sans-serif;
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* variabel */
+::root{
+	--bg-utama:#dedede;
+}
+/* halaman login */
+.halaman_login{
+	background: white;
+	border-radius: 3px;
+	font-weight: bold;
+	width:320px;
+	margin:50px auto;
+	box-sizing: border-box;
+}
+.box-login{
+	border-top: 3px solid #d7d7d7;
+	padding: 0;
+}
+.halaman_login .bx-header{
+	margin: 30px 0px;
+	font-size: 19px;
+	text-align: center;
+}
+.dinput{
+	padding: 10px;
+	width: 100%;
+	font-weight: bold;
+	box-sizing: border-box;
+	border-radius: 3px;
+	outline: 0;
+	border: 1px solid grey;
+	margin-top: 0.5rem;
+	box-sizing: border-box;
+}
+.dinput:focus{
+	box-shadow: inset 0px 0px 4px #dedede;
+}
+
+.halaman_login button{
+	width:100%;
+	border-radius: 2px;
+	text-transform: capitalize;
+	padding: 10px;
+	background: #ff4600;
+	border: none;
+	color: white;
+}
+.halaman_login .form-group{
+	margin-top: 30px;
+	margin-bottom: 10px;
+}

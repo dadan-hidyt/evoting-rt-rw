@@ -1,0 +1,96 @@
+<!-- halaman login -->
+<section class="halaman_login">
+	<header class="bx-header">
+		<h1>{config nama_aplikasi}</h1>
+	</header>
+	<div class="box-login">
+		<form method="POST" id="form-login" action="">
+			<div class="form-group">
+				<input type="text" name="csrf" hidden value="{csrf_token}" >
+				<label for="token">Token peserta</label>
+				<input type="text" id="token" name="token" class="dinput" placeholder="Ketikan token">
+			</div>
+			<div class="form-group">
+				<button id="button-login">masuk</button>
+			</div>
+		</form>
+	</div>
+	<div style="text-align: center;margin: 30px 0px;font-weight: normal;font-size: small;" class="bx-copyright">
+		Dibuat dengan &hearts; Di gergerhanjuang <br><br>
+		Copyright &copy; hanjuangcoder
+	</div>
+</section>
+<script>
+	//proses login
+	$(document).ready(function(){
+		"use strict"
+		const toast = swal.mixin({
+			toast:true,
+			position:"top-end",
+			showConfirmButton:false,
+			timer:3000,
+			timerProgressBar:true,
+
+		});
+		//jika tombol masuk di tekan
+		$("form[id='form-login']").on("submit",function(event){
+			event.preventDefault();
+			if(event.target.token.value == ""){//tampilkan pesan jiga token kosong
+				toast.fire({
+					title:"Opps",
+					text:"Token peserta tidak boleh kosong",
+					icon:"warning"
+				});
+			}else{
+				let button = $("form[id='form-login'] button[id='button-login']");
+				button.html("Tunggu Sebentar...");
+				$.ajax({
+					url:"{url}request/ajax?req_type=auth&auth=cek_login",
+					method:"POST",
+					responseType:"json",
+					data:`token_login=${event.target.token.value}&token={csrf_token}`,
+					success:function(response){//jika request suksess
+						if(response.status == 203){
+							toast.fire({
+								title:"Kesalahan",
+								text:response?.message ?? null,
+								icon:"error"
+							});
+							button.html("masuk");
+						}else if(response.status == 200){//jika status 200 berarti login berhasil
+							button.html("success...");
+							toast.fire({
+								title:"Suksess",
+								text:response?.message ?? null,
+								icon:"success",
+							});
+							//arahkan ke halaman pemilihan setelah waktu 5 detik
+							setTimeout(function(){
+
+							},5000);
+						}
+					},
+					//jika ada error tampilkan pesan error ke client
+					error:function(e){
+						if(e.status == 404){
+							toast.fire({
+								title:"Error",
+								text:"Tidak dapat terhubung dengan Server",
+								icon:"error"
+							});
+							button.html("masuk");
+						}else if(e.status == 0){
+							toast.fire({
+								title:"Ada kesalahan",
+								text:"Tidak dapat terhubung dengan Server,Silahkan periksa internet atau coba nanti",
+								icon:"error"
+							});
+							button.html("masuk");
+						}
+					}
+				});
+			}
+		});
+	});
+</script>
+<!-- e halaman login -->

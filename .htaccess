@@ -3,4 +3,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 ####################################
 RewriteRule ^login/?$ index.php?app=auth&auth_type=login [QSA]
+RewriteRule ^destroy/?$ index.php?app=auth&auth_type=logout [QSA]
+RewriteRule ^detail-calon/([a-zA-Z0-9_-]+).html$ index.php?app=detail-calon [QSA]
+####################################
 RewriteRule ^request/ajax$ request/ajax.php [QSA]

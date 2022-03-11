@@ -9,7 +9,6 @@
  *  2.dilarang merusak aplikasi ini
  *  3.Jika ingin mngembangkan silahkan hubungi kontak pengembang
  */
-
 define("BASE_PATH",dirname(__FILE__));
 define("DS",DIRECTORY_SEPARATOR);
 define("EXT",".php");
@@ -45,4 +44,5 @@ include $handler_path;
 $root_page = load_page("root_page");
 echo $root_page;
 unset($var);
+$db = NULL;
 ?>

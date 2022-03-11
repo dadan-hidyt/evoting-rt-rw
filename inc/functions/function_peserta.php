@@ -66,4 +66,24 @@ function data_peserta_login($field = null)
 		}
 	}
 }
+
+function sudah_milih()
+{
+	global $db;
+	$id = data_peserta_login("id_peserta");
+	if(empty($id)){
+		return false;
+	}
+	$check = $db->prepare("SELECT id_peserta FROM ".TB_SUARA." WHERE id_peserta=:id_peserta");
+	$check->bindParam(':id_peserta',$id);
+	if($check->execute()){
+		if($check->rowCount() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+}
+
+
 ?>

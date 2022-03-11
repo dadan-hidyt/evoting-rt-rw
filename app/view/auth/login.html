@@ -4,26 +4,45 @@
 		<h1>{config nama_aplikasi}</h1>
 	</header>
 	<div class="box-login">
-		<form method="POST" id="form-login" action="">
-			<div class="form-group">
-				<input type="text" name="csrf" hidden value="{csrf_token}" >
-				<label for="token">Token peserta</label>
-				<input type="text" id="token" name="token" class="dinput" placeholder="Ketikan token">
-			</div>
-			<div class="form-group">
-				<button id="button-login">masuk</button>
-			</div>
-		</form>
-	</div>
-	<div style="text-align: center;margin: 30px 0px;font-weight: normal;font-size: small;" class="bx-copyright">
-		Dibuat dengan &hearts; Di gergerhanjuang <br><br>
-		Copyright &copy; hanjuangcoder
-	</div>
-</section>
-<script>
+		<?php if(get_session('error_mess')): ?>
+			<style>
+				/*.error{
+					margin-top: 15px;
+					display: block;
+					background: pink;
+					border: 1px solid maroon;
+					font-weight: normal;
+					font-size: small;
+					padding: 4px;
+					box-sizing: border-box;
+					border-radius: 2px;
+					}*/
+				</style>	
+				<span class="error" id="sudah-milih">
+				</span>
+			<?php endif;unset($_SESSION['error_mess']); ?>
+			<form method="POST" id="form-login" action="">
+				<div class="form-group">
+					<input type="text" name="csrf" hidden value="{csrf_token}" >
+					<label for="token">Token peserta</label>
+					<input autocomplete="off" type="text" value="<?= get_session('last_input') ?>" id="token" name="token" class="dinput" placeholder="Ketikan token">
+				</div>
+				<div class="form-group">
+					<button id="button-login">masuk</button>
+				</div>
+			</form>
+		</div>
+		<div style="text-align: center;margin: 30px 0px;font-weight: normal;font-size: small;" class="bx-copyright">
+			Dibuat dengan &hearts; Di gergerhanjuang <br><br>
+			Copyright &copy; hanjuangcoder
+		</div>
+	</section>
+	<script>
 	//proses login
 	$(document).ready(function(){
 		"use strict"
+
+		//toast
 		const toast = swal.mixin({
 			toast:true,
 			position:"top-end",
@@ -32,6 +51,18 @@
 			timerProgressBar:true,
 
 		});
+		
+		let error = $("#sudah-milih")[0];
+		if(typeof error !== 'undefined'){
+			toast.fire({
+				title:"Ohhh maaf,,,anda sudah memilih sebelumnya",
+				icon:"error",
+				timer:5000
+			})
+			setTimeout(function(){
+				error.style.display = "none";
+			},10000);
+		}
 		//jika tombol masuk di tekan
 		$("form[id='form-login']").on("submit",function(event){
 			event.preventDefault();
@@ -42,6 +73,7 @@
 					icon:"warning"
 				});
 			}else{
+				//button masuk
 				let button = $("form[id='form-login'] button[id='button-login']");
 				button.html("Tunggu Sebentar...");
 				$.ajax({
@@ -53,6 +85,7 @@
 						if(response.status == 203){
 							toast.fire({
 								title:"Kesalahan",
+								timer:6000,
 								text:response?.message ?? null,
 								icon:"error"
 							});
@@ -66,8 +99,8 @@
 							});
 							//arahkan ke halaman pemilihan setelah waktu 5 detik
 							setTimeout(function(){
-
-							},5000);
+								location.href='{url}';
+							},4000);
 						}
 					},
 					//jika ada error tampilkan pesan error ke client

@@ -161,16 +161,27 @@ function verifikasi_csrf($token = null){
 }
 function url()
 {
-
+	global $config;
+	return $config['url'];
 }
 function upload()
 {
 
 }
-function buat_random_token()
-{
-
+//fungsi untuk membuat random tokens
+function buat_random_token($nik = null){
+	$range = array_merge(range("A","Z"),range(0,9));
+	shuffle($range);
+	$nik = "3211172910030001";
+	$token = "";
+	for ($i=0; $i <=7 ; $i++) { 
+		$token .= $range[$i];
+	}
+	$token = $nik.$token;
+	return $token;
 }
+
+
 function print_error($error = "")
 {
 	print "<b>Kesalahan: </b>".$error;

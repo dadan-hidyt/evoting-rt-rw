@@ -30,6 +30,7 @@ if($req_type === "auth"){
 	$auth_type = input_get("auth");
 	if($auth_type === "cek_login"){
 		$token = text_sekuriti(input_post('token_login'));
+		set_session('last_input',$token);
 		if($token == ""){
 			print output_json([
 				"status"=>203,
@@ -51,7 +52,7 @@ if($req_type === "auth"){
 		}else{
 			print output_json([
 				"status"=>203,
-				"message"=>"Token tidak di temukan! Silahkan ulangi lagi,,terimakasih"
+				"message"=>"Maaf token yang kamu ketikan tidak benar, silahkan coba lagi"
 			]);
 		}
 	}

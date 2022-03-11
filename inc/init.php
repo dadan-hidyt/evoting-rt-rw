@@ -45,4 +45,9 @@ $config = array_merge($pengaturan_from_db,$config);
 //menggenerate token csrf
 $data = array();
 $data['csrf_token'] = generate_csrf();
+if(!empty(data_peserta_login())){
+    $data['nama'] = data_peserta_login('nama');
+    $data['id_peserta'] = data_peserta_login('id_peserta');
+}
+
 ?>

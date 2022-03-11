@@ -2,7 +2,7 @@
 /**
  * Aplikasi pemilihan ketua RT/RW berbasis web
  * @link http://hanjuangcoder.my.id/ertvoting
- * @license GPL
+ * @license BELUM ADA
  * @author dadan <dadanhidyt@gmail.com>
  * PERINGATAN
  *  1.dilarang memperjual  belikan aplikasi ini tanpa seijin pengembang

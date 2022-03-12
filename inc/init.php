@@ -5,6 +5,8 @@ include SELF_PATH.DS."konstanta".EXT;
 include SELF_PATH.DS."functions/function_global".EXT;
 mulai_session();
 include SELF_PATH.DS."functions/function_peserta".EXT;
+include SELF_PATH.DS."functions/function_calon".EXT;
+
 /**
  * Cek apakah Extensi PDO sudah terinstall
  * Karena sebagian besar web ini mengunakan teknik PDO

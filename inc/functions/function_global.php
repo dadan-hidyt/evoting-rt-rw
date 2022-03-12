@@ -1,9 +1,4 @@
 <?php
-/**
- *XTRSZZYS-2021183726532
- * fungsi untuk menampilkan error 404
- */
-
 function tampil_404()
 {
 	header("HTTP/1.1 404 Not Found");
@@ -159,6 +154,7 @@ function verifikasi_csrf($token = null){
 		return false;
 	}
 }
+//fungsi untuk url
 function url()
 {
 	global $config;

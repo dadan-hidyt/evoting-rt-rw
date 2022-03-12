@@ -66,7 +66,7 @@ function data_peserta_login($field = null)
 		}
 	}
 }
-
+//function untuk mencecek apakah user sudah milih atau belum
 function sudah_milih()
 {
 	global $db;

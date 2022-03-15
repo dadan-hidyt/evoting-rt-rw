@@ -21,4 +21,15 @@ function get_calon($no_calon = null)
 
 }
 
+function hasil_suara()
+{
+    $jumlah_suara = 0;
+    $getJumlah = $db->query("SELECT * FROM tb_user WHERE");
+    if($getJumlah == false){
+
+    }
+}
+
+
+
 ?>

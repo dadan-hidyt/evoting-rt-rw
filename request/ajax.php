@@ -7,7 +7,7 @@ include '../config/config.php';
 include '../inc/init.php';
 header("content-type:application/json");
 //cek apakah ada token csrf
-if(!isset($_POST['token']))
+if(!isset($_POST['token']) && !isset($_GET['token']))
 {
 	print output_json([
 		"status"=>203,
@@ -16,7 +16,7 @@ if(!isset($_POST['token']))
 	die;
 }
 //verifikasi token csrf
-$token = $_POST['token'];
+$token = !empty($_POST['token']) ? $_POST['token'] : $_GET['token'];
 if(!verifikasi_csrf($token)){
 	print output_json([
 		"status"=>203,
@@ -55,5 +55,12 @@ if($req_type === "auth"){
 				"message"=>"Maaf token yang kamu ketikan tidak benar, silahkan coba lagi"
 			]);
 		}
+	}
+}elseif($req_type == 'get_calon'){
+	$calon = get_calon();
+	if(!empty($calon)){
+		print output_json(["status"=>200,"data"=>$calon]);
+	}else{
+		echo "22222222";
 	}
 }
